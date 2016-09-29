@@ -258,7 +258,6 @@ mkdir -p $MODPATH
 
 # Copy files
 ui_print "- Copying files"
-unzip -o $ZIP system/* -d $MODPATH
 mkdir -p $MODPATH/bin
 cp -af $BINDIR/. $MODPATH/bin
 cp -af $INSTALLER/common/launch_daemonsu.sh $MODPATH/launch_daemonsu.sh
