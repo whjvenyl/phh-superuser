@@ -1,4 +1,10 @@
 #!/system/bin/sh
 
-# This script will be executed in post-fs-data mode
-# More info in the main Magisk thread
+# Live patch with su rules
+/magisk/phh/bin/sepolicy-inject --live
+
+setprop magisk.supath "/magisk/phh/bin"
+setprop magisk.root 1
+
+# Launch the su daemon
+/magisk/phh/launch_daemonsu.sh &
