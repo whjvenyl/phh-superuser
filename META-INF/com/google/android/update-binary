@@ -139,7 +139,7 @@ MODPATH=$MOUNTPATH/$MODID
 
 mkdir -p $INSTALLER
 cd $INSTALLER
-unzip -o $ZIP common/* module.prop
+unzip -o $ZIP *
 
 ##########################################################################################
 # Main
@@ -178,6 +178,11 @@ if [ "$ABILONG" = "x86_64" ]; then ARCH=x64; IS64BIT=1; fi;
 
 # You can get the Android API version from $API, the CPU architecture from $ARCH
 # Useful if you are creating Android version / platform dependent mods
+
+BINDIR=$INSTALLER/arm
+if [ "$ARCH" = "x86" -o "$ARCH" = "x64" ]; then
+  BINDIR=$INSTALLER/x86
+fi
 
 if (! $CACHEMOD); then
   IMG=
@@ -248,11 +253,15 @@ if ($BOOTMODE) && (! is_mounted /magisk); then
 fi
 
 # Create mod paths
+rm -rf $MODPATH
 mkdir -p $MODPATH
 
 # Copy files
 ui_print "- Copying files"
 unzip -o $ZIP system/* -d $MODPATH
+mkdir -p $MODPATH/bin
+cp -af $BINDIR/. $MODPATH/bin
+cp -af $INSTALLER/common/launch_daemonsu.sh $MODPATH/launch_daemonsu.sh
 
 # Handle replace folders
 for TARGET in $REPLACE; do
