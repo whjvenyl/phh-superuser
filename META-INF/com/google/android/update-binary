@@ -142,6 +142,9 @@ if ($BOOTMODE) && (! is_mounted /magisk); then
   exit 1
 fi
 
+# Fix SuperSU.....
+($BOOTMODE) && /data/magisk/sepolicy-inject -s fsck --live
+
 TMPDIR=/tmp
 MOUNTPATH=/magisk
 IMGNAME=magisk.img
