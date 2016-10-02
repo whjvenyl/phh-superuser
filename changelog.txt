@@ -1,2 +1,2 @@
-r259 (Magisk Version)
+r259 (Magisk Version v1)
     - Support the new repo system
