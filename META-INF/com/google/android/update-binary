@@ -275,6 +275,7 @@ mkdir -p $MODPATH
 ui_print "- Copying files"
 mkdir -p $MODPATH/bin
 cp -af $BINDIR/. $MODPATH/bin
+mkdir -p $MODPATH/su.d
 
 # Handle replace folders
 for TARGET in $REPLACE; do
